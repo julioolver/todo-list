@@ -1,60 +1,68 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
+  <v-app class="background-dark">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <!-- mx-6 mt-3 -->
+    <v-main class="">
+      <transition name="slide" mode="out-in">
+        <router-view />
+      </transition>
+      <!-- <HelloWorld /> -->
     </v-main>
+    <vtoast ref="vtoast" />
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
+import vtoast from "@/components/Toast.vue";
 export default {
-  name: 'App',
-
+  name: "App", //or whatever your root is
   components: {
-    HelloWorld,
+    vtoast,
   },
-
-  data: () => ({
-    //
-  }),
+  mounted() {
+    this.$root.vtoast = this.$refs.vtoast;
+  },
 };
 </script>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.background-dark {
+  background-image: linear-gradient(
+    rgba(22, 29, 49, 0.9) 44%,
+    rgba(22, 29, 49, 0.43) 73%,
+    rgba(22, 29, 49, 0)
+  );
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
