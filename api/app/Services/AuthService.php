@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\UserHasBeenTakenException;
+use App\Jobs\WelcomeUserMail;
 use App\Models\User;
 use App\Services\OAuth\MailAuthService;
 use Exception;
@@ -29,9 +30,10 @@ class AuthService
         }
 
         $provider = $this->getService($provider);
-
         $userData = $provider->create($data);
         $user = User::create($userData);
+
+        WelcomeUserMail::dispatch($user);
 
         return $user;
     }
