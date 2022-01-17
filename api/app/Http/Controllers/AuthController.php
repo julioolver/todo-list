@@ -18,7 +18,7 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
-    public function login(AuthLoginRequest $request, string $provider)
+    public function login(AuthLoginRequest $request, string $provider = 'email')
     {
         $user = $this->authService->authenticate($request->validated(), $provider);
         // return (new UserResource(auth()->user()))->additional($token);
