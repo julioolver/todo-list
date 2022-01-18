@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,14 @@ class AuthController extends Controller
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
+    }
+
+    public function teste(Request $request)
+    {
+        $params = $request->all();
+        
+        $users = User::paginate($params['perPage']);
+        return response()->json($users);
     }
 
     public function login(AuthLoginRequest $request, string $provider = 'email')
