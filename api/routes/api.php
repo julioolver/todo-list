@@ -28,3 +28,7 @@ Route::prefix('v1')->group(function () {
     Route::get('teste', [AuthController::class, 'teste']);
     Route::post('register/{provider?}', [AuthController::class, 'register']);
 });
+
+Route::prefix('me')->group(function() {
+    Route::get('', []);
+});

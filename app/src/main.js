@@ -5,7 +5,6 @@ import router from '@/router'
 import '@/plugins/axios'
 
 Vue.config.productionTip = false
-Vue.prototype.$userData = []
 
 new Vue({
   vuetify,

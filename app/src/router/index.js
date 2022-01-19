@@ -2,16 +2,28 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LayoutLogin from '../layouts/Login'
 import Login from '../modules/login/view/Login'
+import Default from '../layouts/Default'
 import Todo from '../modules/todos/view/Todo'
+import Home from '../modules/home/view/Home'
+import Guard from '@/services/middleware'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    beforeEnter: Guard.redirectIfNotAuthenticated,
+    component: Default,
+    children: [
+      {path: '', name: 'index', component: Home }
+    ]
+  },
+  {
     path: '/login',
     component: LayoutLogin,
+    beforeEnter: Guard.redirectIfAuthenticated,
     children: [
-      {path: '', name: 'Login', component: Login }
+      {path: '', name: 'login', component: Login }
     ]
   },
   {
