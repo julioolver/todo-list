@@ -1,0 +1,26 @@
+#img dockerhub, tem a opão do shakyshae/laravel-php:latest
+FROM wyveo/nginx-php-fpm:php74
+
+# COPY composer.lock composer.json /usr/share/nginx/
+
+# COPY database /usr/share/nginx/database
+
+WORKDIR /usr/share/nginx/
+
+# CMD bash -c "composer install"
+RUN rm -rf /usr/share/nginx/html
+COPY . /usr/share/nginx
+RUN composer install && php artisan key:generate
+
+RUN chmod -R 775 /usr/share/nginx/storage/*
+
+#group nginx
+# RUN chown -R www–data:www-data \
+#     /usr/share/nginx/storage \
+#     /usr/share/nginx/bootstrap/cache
+
+RUN php artisan key:generate
+RUN php artisan config:cache
+# RUN php artisan optmize
+
+# RUN ln -s public html
