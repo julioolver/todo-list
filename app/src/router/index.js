@@ -5,6 +5,7 @@ import Login from '../modules/login/view/Login'
 import Default from '../layouts/Default'
 import Todo from '../modules/todos/view/Todo'
 import Home from '../modules/home/view/Home'
+import Perfil from '../modules/perfil/view/Perfil'
 import Guard from '@/services/middleware'
 
 Vue.use(VueRouter)
@@ -15,7 +16,8 @@ const routes = [
     beforeEnter: Guard.redirectIfNotAuthenticated,
     component: Default,
     children: [
-      {path: '', name: 'index', component: Home }
+      {path: '', name: 'index', component: Home },
+      {path: 'perfil/:id', name: 'profile', component: Perfil },
     ]
   },
   {

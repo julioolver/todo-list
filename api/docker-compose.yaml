@@ -12,7 +12,7 @@ services:
 
     mysql-app:
       image: mysql:8.0
-      ports: 
+      ports:
         - "3306:3306"
       volumes:
         - .docker/dbdata:/var/lib/mysql
@@ -21,8 +21,7 @@ services:
         MYSQL_ROOT_PASSWORD: root
       networks:
         - app-network
-        
+
 networks:
     app-network:
       driver: bridge
-      

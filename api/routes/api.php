@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,10 @@ Route::prefix('v1')->group(function () {
     Route::post('login/{provider?}', [AuthController::class, 'login']);
     Route::get('teste', [AuthController::class, 'teste']);
     Route::post('register/{provider?}', [AuthController::class, 'register']);
+
+    Route::prefix('me')->middleware('auth:api')->group(function() {
+        Route::get('', [MeController::class, 'index']);
+        Route::put('update/{id}', [MeController::class, 'update']);
+    });
 });
 
-Route::prefix('me')->group(function() {
-    Route::get('', []);
-});

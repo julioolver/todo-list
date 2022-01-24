@@ -25,7 +25,14 @@
                 {{ user.email }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn depressed rounded text> Edit Account </v-btn>
+              <v-btn
+                depressed
+                rounded
+                text
+                :to="{ name: 'profile', params: { id: user.id } }"
+              >
+                Edit Account
+              </v-btn>
               <v-divider class="my-3"></v-divider>
               <v-btn depressed rounded text> Disconnect </v-btn>
             </div>
@@ -33,27 +40,24 @@
         </v-card>
       </v-menu>
     </v-app-bar>
-    <v-container>
-      <v-main>
-        <v-layout>
-          <router-view />
-        </v-layout>
-      </v-main>
+    <v-container fluid>
+      <!-- <v-layout> -->
+      <router-view />
+      <!-- </v-layout> -->
     </v-container>
   </v-app>
 </template>
 
 <script>
-import Vue from "vue";
-
 export default {
   data: () => ({
     user: {},
   }),
 
   async mounted() {
-    const userData = await this.$http.get("/me");
-    Vue.prototype.$userData = userData.data.user;
+    // const userData = await this.$http.get("/me");
+    // Vue.prototype.$userData = userData.data.user;
+    this.user = this.$userData;
 
     console.log(this.$userData);
   },

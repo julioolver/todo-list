@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link>
     </div>
     <!-- mx-6 mt-3 -->
-    <v-main class="">
+    <v-main>
       <transition name="slide" mode="out-in">
         <router-view />
       </transition>

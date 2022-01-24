@@ -163,7 +163,7 @@ export default {
           const token = response.data.access_token;
           Cookies.setToken(token);
         
-          // this.$router.push('/');
+          this.$router.push('/');
         }
       } catch (error) {
         this.$root.vtoast.show({
