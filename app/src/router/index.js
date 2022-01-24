@@ -6,6 +6,7 @@ import Default from '../layouts/Default'
 import Todo from '../modules/todos/view/Todo'
 import Home from '../modules/home/view/Home'
 import Perfil from '../modules/perfil/view/Perfil'
+import Upload from '../modules/upload/view/Upload'
 import Guard from '@/services/middleware'
 
 Vue.use(VueRouter)
@@ -18,6 +19,7 @@ const routes = [
     children: [
       {path: '', name: 'index', component: Home },
       {path: 'perfil/:id', name: 'profile', component: Perfil },
+      {path: 'upload', name: 'profile', component: Upload },
     ]
   },
   {

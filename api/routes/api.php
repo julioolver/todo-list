@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MeController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,10 @@ Route::prefix('v1')->group(function () {
     Route::prefix('me')->middleware('auth:api')->group(function() {
         Route::get('', [MeController::class, 'index']);
         Route::put('update/{id}', [MeController::class, 'update']);
+    });
+
+    Route::prefix('upload')->group(function() {
+        Route::post('', [UploadController::class, 'upload']);
     });
 });
 
