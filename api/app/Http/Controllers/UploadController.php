@@ -2,41 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UploadService;
 use Illuminate\Http\Request;
 
 class UploadController extends Controller
 {
+    private UploadService $service;
+
+    public function __construct(UploadService $service)
+    {
+        $this->service = $service;
+    }
+
     public function upload(Request $request)
     {
-        $fileRequest = $request->file('arquivo')->store('uploads');
-        // $path = $fileRequest->getRealPath();
-
-        // $filename = $fileRequest->getClientOriginalName();
-        $location = 'uploads';
-        $filepath = storage_path('app/' . $fileRequest);
-
-        $file = fopen($filepath, 'r');
-        $data = array();
-
-        $header = fgetcsv($file);
-
-        $i = 0;
-        while (($fileData = fgetcsv($file))) {
-            $num = count($fileData);
-
-            if ($fileData[0] == "") {
-                continue;
-            }
-
-
-            for ($c = 0; $c < $num; $c++) {
-                $data[$i][] = $fileData[$c];
-            }
-            $i++;
-            $arr = $this->mount($data, $header);
-        }
-        fclose($file);
-        dd($arr);
+        $this->service->dispach($request);
     }
 
     private function mount($importData, $header)
