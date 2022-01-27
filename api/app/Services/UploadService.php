@@ -6,15 +6,16 @@ class UploadService
 {
     public function dispach()
     {
-        $typeUpload = $this->getTypeUpload();
-        dispatch();
+        $typeUpload = $this->getTypeUpload('upload');
+        //dispatch();
     }
 
     public function getTypeUpload(string $name)
     {
         switch($name) {
-            case: ''
-        }
+            case 'upload':
+            return 'a';
+        };
     }
     public function upload($request)
     {

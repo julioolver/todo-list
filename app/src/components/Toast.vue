@@ -26,7 +26,7 @@ export default {
   },
   methods:{
     show(data) {
-      this.message = message[data.message] || 'Erro interno.'
+      this.message = message[data.message] || data.message || 'Erro interno.'
       this.color = data.color || 'success'
       this.timer = data.timer || 3000
       this.icon = data.icon || 'mdi-check'

@@ -17,7 +17,7 @@
               dense
               accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
               label="File input"
-              style="min-width: 300px"
+              style="min-width: 150px"
               v-model="arquivo"
               @change="teste"
             ></v-file-input>
@@ -46,10 +46,13 @@ export default {
       console.log(e, this.arquivo);
 
       try {
-          const response = await this.$http.post("upload", form);
-          console.log(response);
+        await this.$http.post("upload", form);
+        this.$root.vtoast.show({
+          message: 'Upload foi iniciado na fila dos uploads.',
+          color: "success",
+        });
       } catch (error) {
-          console.log(error);
+        console.log(error);
       }
     },
   },
