@@ -1,2 +1,3 @@
 # todo-list
-TodoList com Laravel e vuejs, implemento os princípios SOLID.
+TodoList com Laravel e vuejs, implementando os princípios SOLID.
+# EM ANDAMENTO
